@@ -1,3 +1,5 @@
+cqlsh;
+
 -- Create keyspace
 CREATE KEYSPACE IF NOT EXISTS loyalty_app WITH REPLICATION = {
     'class': 'SimpleStrategy',

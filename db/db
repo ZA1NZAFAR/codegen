@@ -1,0 +1,41 @@
+-- Create keyspace
+CREATE KEYSPACE IF NOT EXISTS loyalty_app WITH REPLICATION = {
+    'class': 'SimpleStrategy',
+    'replication_factor': 1
+};
+
+-- Use keyspace
+USE loyalty_app;
+
+-- Create users table
+CREATE TABLE users (
+    user_id UUID PRIMARY KEY,
+    email TEXT,
+    name TEXT,
+    unique_id TEXT,
+    created_at TIMESTAMP
+);
+
+-- Create merchants table
+CREATE TABLE merchants (
+    merchant_id UUID PRIMARY KEY,
+    name TEXT,
+    location TEXT,
+    created_at TIMESTAMP
+);
+
+-- Create transactions table
+CREATE TABLE transactions (
+    transaction_id UUID PRIMARY KEY,
+    merchant_id UUID,
+    user_id UUID,
+    amount_spent DOUBLE,
+    timestamp TIMESTAMP
+);
+
+-- Create user visits table
+CREATE TABLE user_visits (
+    user_id UUID PRIMARY KEY,
+    merchant_id UUID,
+    visit_count INT
+);
